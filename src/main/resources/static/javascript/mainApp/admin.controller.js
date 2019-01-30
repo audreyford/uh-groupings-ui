@@ -67,6 +67,7 @@
          */
         $scope.removeAdmin = function (currentPage, index) {
             var adminToRemove = $scope.pagedItemsAdmins[currentPage][index];
+          console.log($scope.selectedGrouping);
 
             if ($scope.adminsList.length > 1) {
                 $scope.createRemoveModal({
