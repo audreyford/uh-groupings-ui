@@ -1,4 +1,4 @@
-package edu.hawaii.its.groupings.controller;
+/**package edu.hawaii.its.groupings.controller;
 
 import edu.hawaii.its.groupings.type.Feedback;
 import org.apache.commons.logging.Log;
@@ -9,7 +9,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -27,3 +26,4 @@ public class ErrorRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
+**/

@@ -7,6 +7,7 @@ import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.AssertionImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,7 +30,7 @@ import static org.junit.Assert.fail;
 public class UserDetailsServiceTest {
 
     @Autowired
-    private UserBuilder userBuilder;
+private UserBuilder userBuilder;
 
     @Test
     public void testAdminUsers() {
