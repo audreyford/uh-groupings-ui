@@ -413,7 +413,9 @@
                 $scope.updateAddMember(user, listName);
             });
         };
-
+       /* $scope.createUsableWhiteSpace = function (value) {
+            return Array(value).fill("\xa0").reduce((i, j) => i + j);
+        };*/
         /**
          * Creates a modal that asks for confirmation when adding a user.
          * @param {object} options - the options object
@@ -424,10 +426,14 @@
             var userToAdd = options.userToAdd;
 
             groupingsService.getMemberAttributes(userToAdd, function (attributes) {
-            const padding = "     ";
-                $scope.uidToAdd = String(padding + attributes.uid);
-                $scope.uhuuidToAdd = String("If this was             whitespace I'd be done " + attributes.uhuuid);
-                $scope.nameToAdd = String("If this was whitespace I'd be done " + attributes.cn);
+            /*    const padding = 3;
+
+                $scope.uidToAddPadded = String("UH Username:" + $scope.createUsableWhiteSpace(3) + attributes.uid);
+                $scope.uhuuidToAddPadded = String("UH ID:" + $scope.createUsableWhiteSpace(17) + attributes.uhuuid);
+                $scope.nameToAddPadded = String("Name:" + $scope.createUsableWhiteSpace(17) + attributes.cn); */
+                $scope.uidToAdd = attributes.uid;
+                $scope.uhuuidToAdd = attributes.uhuuid;
+                $scope.nameToAdd = attributes.cn;
 
                 $scope.listName = options.listName;
 

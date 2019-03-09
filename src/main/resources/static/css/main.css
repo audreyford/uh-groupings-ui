@@ -453,6 +453,13 @@ table .w-30 {
 .fa.fa-trash-o {
     margin-right: .75rem;
 }
+.notbold{
+    font-weight: normal;
+}
+
+.textblack{
+    color: black;
+}
 
 .basis-column {
     width: 3%;

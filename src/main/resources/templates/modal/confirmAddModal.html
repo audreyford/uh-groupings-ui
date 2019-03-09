@@ -9,8 +9,22 @@
 </div>
 <div class="modal-body" id="modal-body">
     <p th:text="#{screen.message.modal.add.confirmation}"></p>
-    <p th:utext="#{screen.message.modal.add.memberInfo}"></p>
-    <p th:text="#{screen.message.modal.add.finalConfirm}"></p>
+    <table style = "width: 80%;margin-bottom: 30px;">
+        <tr>
+            <th>Name:</th>
+            <th class="notbold" th:utext="#{screen.message.modal.add.memberName}"></th>
+        </tr>
+        <tr>
+            <th>UH Username:</th>
+            <th class="notbold" th:utext="#{screen.message.modal.add.memberUserName}"></th>
+        </tr>
+        <tr>
+            <th>UH User ID:</th>
+            <th class="notbold" th:utext="#{screen.message.modal.add.memberId}"></th>
+        </tr>
+    </table>
+    <p> Are you sure you want to add <span style="font-weight: bold" th:utext="#{screen.message.modal.add.finalConfirm}"></span><span class="textblack"> to the </span><span class="textblack" th:utext="#{screen.message.modal.add.listName}"></span><span class="textblack"> list?</span>
+    </p>
 </div>
 
 <div class="modal-footer">
