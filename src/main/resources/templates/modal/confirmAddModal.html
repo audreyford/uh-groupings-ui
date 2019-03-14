@@ -1,30 +1,42 @@
+<!--
+   -  confirmAddModal.html
+        -  Contains the add conformation modal
+        -  See Modal Add section in messages.properties
+        -  See createConfirmAddModal general.controller.js
+-->
+
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       lang="en">
 <div class="modal-header">
-    <h5 class="modal-title" id="modal-title">Confirm Adding Member</h5>
+    <h5 class="modal-title" id="modal-title" th:text="#{screen.message.modal.add.title}"></h5>
     <button type="button" class="close" data-dismiss="dialog" ng-click="cancelConfirmAddUser()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body" id="modal-body">
-    <p th:text="#{screen.message.modal.add.confirmation}"></p>
+    <p>
+        <span class="textblack" th:text="#{screen.message.modal.add.confirmation}"></span>
+        <span class="textblack">{{listName}} list.</span>
+    </p>
     <table style = "width: 80%;margin-bottom: 30px;">
         <tr>
-            <th>Name:</th>
-            <th class="notbold" th:utext="#{screen.message.modal.add.memberName}"></th>
+            <th th:utext="#{screen.message.modal.add.name}"></th>
+            <th style="font-weight: normal"> {{nameToAdd}} </th>
         </tr>
         <tr>
-            <th>UH Username:</th>
-            <th class="notbold" th:utext="#{screen.message.modal.add.memberUserName}"></th>
+            <th th:utext="#{screen.message.modal.add.uhUserName}"></th>
+            <th class="font-weight-normal"> {{uhuuidToAdd}} </th>
         </tr>
         <tr>
-            <th>UH User ID:</th>
-            <th class="notbold" th:utext="#{screen.message.modal.add.memberId}"></th>
+            <th th:utext="#{screen.message.modal.add.uhUserId}"></th>
+            <th class="font-weight-normal">{{uidToAdd}}</th>
         </tr>
     </table>
-    <p> Are you sure you want to add <span style="font-weight: bold" th:utext="#{screen.message.modal.add.finalConfirm}"></span><span class="textblack"> to the </span><span class="textblack" th:utext="#{screen.message.modal.add.listName}"></span><span class="textblack"> list?</span>
-    </p>
+
+    <p>{{createSentence("Are you sure you want to add ", {{colorText({uidToAdd}})}}, " to the ", {{listName}}, " list?")}}</p>
+  <!--  <p> Are you sure you want to add <span style="font-weight: bold" th:utext="#{screen.message.modal.add.finalConfirm}"></span><span class="textblack"> to the </span><span class="textblack" th:utext="#{screen.message.modal.add.listName}"></span><span class="textblack"> list?</span>
+    </p> -->
 </div>
 
 <div class="modal-footer">

@@ -413,9 +413,21 @@
                 $scope.updateAddMember(user, listName);
             });
         };
-       /* $scope.createUsableWhiteSpace = function (value) {
-            return Array(value).fill("\xa0").reduce((i, j) => i + j);
-        };*/
+        /* $scope.createUsableWhiteSpace = function (value) {
+             return Array(value).fill("\xa0").reduce((i, j) => i + j);
+         };*/
+
+        $scope.colorText = function (phrase) {
+            return ["<span> phrase </span>"];
+        };
+
+        $scope.createSentence = function (...args) {
+            let sentence = "";
+            args.forEach(function (str) {
+                sentence += str;
+            });
+            return sentence;
+        };
         /**
          * Creates a modal that asks for confirmation when adding a user.
          * @param {object} options - the options object
@@ -426,17 +438,15 @@
             var userToAdd = options.userToAdd;
 
             groupingsService.getMemberAttributes(userToAdd, function (attributes) {
-            /*    const padding = 3;
+                /*    const padding = 3;
 
-                $scope.uidToAddPadded = String("UH Username:" + $scope.createUsableWhiteSpace(3) + attributes.uid);
-                $scope.uhuuidToAddPadded = String("UH ID:" + $scope.createUsableWhiteSpace(17) + attributes.uhuuid);
-                $scope.nameToAddPadded = String("Name:" + $scope.createUsableWhiteSpace(17) + attributes.cn); */
+                    $scope.uidToAddPadded = String("UH Username:" + $scope.createUsableWhiteSpace(3) + attributes.uid);
+                    $scope.uhuuidToAddPadded = String("UH ID:" + $scope.createUsableWhiteSpace(17) + attributes.uhuuid);
+                    $scope.nameToAddPadded = String("Name:" + $scope.createUsableWhiteSpace(17) + attributes.cn); */
                 $scope.uidToAdd = attributes.uid;
                 $scope.uhuuidToAdd = attributes.uhuuid;
                 $scope.nameToAdd = attributes.cn;
-
                 $scope.listName = options.listName;
-
                 // Ask for confirmation from the user to add the member
                 $scope.confirmAddModalInstance = $uibModal.open({
                     templateUrl: "modal/confirmAddModal",
