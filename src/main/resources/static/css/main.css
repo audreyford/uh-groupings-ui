@@ -13,6 +13,11 @@
     src: url(../fonts/AlegreyaSans-Regular.ttf);
 }
 
+@font-face {
+  font-family: fontawesome-webfont;
+  src: url(../fonts/fontawesome-webfont.ttf);
+}
+
 html {
     position: relative;
     min-height: 100%;
