@@ -1,9 +1,11 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light border-bottom" th:fragment="copy">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light border-bottom pt-2 pb-2" th:fragment="copy">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">
-            <img class="img-fluid align-top" th:src="@{/images/seal/seal.jpg}" alt="UH Groupings"/>
-            <span class="align-bottom uh-nav-app-name">UH Groupings</span>
-        </a>
+
+      <a class="navbar-brand align-items-center" href="/uhgroupings/">
+        <img class="img-fluid" src="images/uh-groupings-logo.png" srcset="images/uh-groupings-logo.png 1x,
+            images/uh-groupings-logo-2x.png 2x" alt="UH Groupings">
+        <span class="sr-only">UH Groupings</span>
+      </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,15 +32,19 @@
                     <a class="nav-link" th:href="@{/feedback}">Feedback</a>
                 </li>
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/login}" class="nav-link">Login</a>
+                    <a th:href="@{/login}" class="nav-link">Login
+                      <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    </a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <form action="/logout" th:action="@{/logout}" method="post">
-                        <button class="btn btn-link navbar-logout" type="submit">Logout (<span
-                                sec:authentication="name" id="name"></span>)
+                        <button class="btn btn-outline-secondary" type="submit">Logout (<span
+                                sec:authentication="name" id="name"></span>) <i class="fa fa-sign-out" aria-hidden="true"></i>
                         </button>
                     </form>
                 </li>
+              <button class="btn btn-outline-secondary" type="submit">Logout (<span id="name">username</span>) <i class="fa fa-sign-out" aria-hidden="true"></i>
+              </button>
             </ul>
         </div>
     </div>
