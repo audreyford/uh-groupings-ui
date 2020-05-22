@@ -70,7 +70,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="e in pagedItemsExclude[currentPageExclude]" class="table table-sm">
+                <tr ng-repeat="e in pagedItemsExclude[currentPageExclude]" class="table table-sm"
+                    ng-init="addUsersFromPageToCheckboxObject(pagedItemsExclude[currentPageExclude])">
                     <td class="p-10" style="margin-left: 4px">
                         <input class="form-check-input singlechkbox" type="checkbox"
                                style="margin-left: 0"

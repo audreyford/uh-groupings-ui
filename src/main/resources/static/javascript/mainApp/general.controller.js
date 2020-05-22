@@ -1040,12 +1040,31 @@
         };
 
         /**
+         * Adds the current users on the page to the object holding the checkbox values
+         * and initializes them to false.
+         * @param currentPage - the current page that contains the users.
+         */
+        $scope.addUsersFromPageToCheckboxObject = function(currentPage) {
+            currentPage.forEach((user) => $scope.usersInCheckboxList[user.username] = false);
+        };
+
+        /**
+         * Extracts all keys in the object that have the value true and puts them in an array.
+         * @param objectName - The name of the object that is extracted from.
+         */
+        $scope.extractTrueUsersFromCheckboxes = function (objectName) {
+            $scope.usersToModify = _.keys(_.pickBy(objectName));
+        };
+
+        /**
          * Removes members upon clicking the delete button. Can remove a single member or multiple members
          * in the list usersToModify.
          * @param listName - Name of the list that the user(s) will be deleted from.
          */
         $scope.removeMembersWithDeleteButton = function (listName) {
             console.log($scope.usersInCheckboxList);
+            $scope.extractTrueUsersFromCheckboxes($scope.usersInCheckboxList);
+            console.log($scope.usersToModify);
         };
 
 
