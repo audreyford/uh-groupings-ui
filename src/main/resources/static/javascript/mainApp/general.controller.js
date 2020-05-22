@@ -1071,7 +1071,7 @@
          * in the list usersToModify.
          * @param listName - Name of the list that the user(s) will be deleted from.
          */
-        $scope.removeMembersWithDeleteButton = function (listName) {
+        $scope.removeMembersWithDeleteButton = function(listName) {
             console.log($scope.usersInCheckboxList);
             $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
             console.log($scope.usersToModify);
@@ -1083,7 +1083,7 @@
          * @param {number} currentPage - the current page in the owners table
          * @param {number} index - the index of the owner clicked by the user
          */
-        $scope.removeOwner = function (currentPage, index) {
+        $scope.removeOwner = function(currentPage, index) {
             const ownerToRemove = $scope.pagedItemsOwners[currentPage][index];
 
             if ($scope.groupingOwners.length > 1) {
