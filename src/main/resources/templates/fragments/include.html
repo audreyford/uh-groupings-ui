@@ -45,6 +45,7 @@
                     <th scope="col" class="clickable center-checkbox" style="vertical-align: top; margin-left: 5px">
                         <input class="form-check-input" type="checkbox" id="selectall"
                                style="margin-left: 0"
+                               ng-model="isAllSelected"
                                ng-click="toggleCheckAllSelection()"
                                value="option1" data-toggle="tooltip" data-placement="top" title="Check all"
                                aria-label="assertive">
@@ -117,22 +118,6 @@
                     </td>
                 </tr>
                 </tbody>
-                <script type="text/javascript">
-                    jQuery(function ($) {
-                        $("body").on("click", "#selectall", function () {
-                            $(".singlechkbox").prop("checked", this.checked);
-                        });
-
-                        $("body").on("click", ".singlechkbox", function () {
-                            if ($(".singlechkbox").length == $(".singlechkbox:checked").length) {
-                                $("#selectall").prop("checked", "checked");
-                            } else {
-                                $("#selectall").removeAttr("checked");
-                            }
-
-                        });
-                    });
-                </script>
             </table>
         </div>
         <div class="d-lg-flex d-block justify-content-lg-between justify-content-start">
