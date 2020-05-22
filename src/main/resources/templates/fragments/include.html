@@ -45,6 +45,7 @@
                     <th scope="col" class="clickable center-checkbox" style="vertical-align: top; margin-left: 5px">
                         <input class="form-check-input" type="checkbox" id="selectall"
                                style="margin-left: 0"
+                               ng-click="toggleCheckAllSelection()"
                                value="option1" data-toggle="tooltip" data-placement="top" title="Check all"
                                aria-label="assertive">
                     </th>
@@ -76,12 +77,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="i in pagedItemsInclude[currentPageInclude]" class="table table-sm">
+                <tr ng-repeat="i in pagedItemsInclude[currentPageInclude]" class="table table-sm"
+                    ng-click="usersInCheckboxList[i.username]=!usersInCheckboxList[i.username]"
+                    ng-init="addUsersFromPageToCheckboxObject(pagedItemsInclude[currentPageInclude])">
                     <td class="p-10" style="margin-left: 4px">
                         <input class="form-check-input position-left singlechkbox" type="checkbox"
                                style="margin-left: 0"
                                ng-model="usersInCheckboxList[i.username]"
-                               ng-click="usersInCheckboxList[i.username] = true"
+                               ng-click="$event.stopPropagation()"
                                aria-label="assertive">
                     </td>
                     <td class="p-10" tabindex="0">
