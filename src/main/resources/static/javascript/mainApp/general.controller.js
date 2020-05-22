@@ -1062,7 +1062,7 @@
          * Extracts all keys in the object that have the value true and puts them in an array.
          * @param objectName - The name of the object that is extracted from.
          */
-        $scope.extractTrueUsersFromCheckboxes = function (objectName) {
+        $scope.extractSelectedUsersFromCheckboxes = function (objectName) {
             $scope.usersToModify = _.keys(_.pickBy(objectName));
         };
 
@@ -1073,7 +1073,7 @@
          */
         $scope.removeMembersWithDeleteButton = function (listName) {
             console.log($scope.usersInCheckboxList);
-            $scope.extractTrueUsersFromCheckboxes($scope.usersInCheckboxList);
+            $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
             console.log($scope.usersToModify);
         };
 
