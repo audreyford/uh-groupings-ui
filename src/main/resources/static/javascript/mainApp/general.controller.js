@@ -1049,6 +1049,16 @@
         };
 
         /**
+         * Toggle for the check-all checkbox that either adds all users or removes all user's usernames on the page.
+         */
+        $scope.toggleCheckAllSelection = function() {
+            $scope.allSelected = !$scope.allSelected;
+            for(let username in $scope.usersInCheckboxList) {
+                $scope.usersInCheckboxList[username] = $scope.allSelected;
+            }
+        };
+
+        /**
          * Extracts all keys in the object that have the value true and puts them in an array.
          * @param objectName - The name of the object that is extracted from.
          */
