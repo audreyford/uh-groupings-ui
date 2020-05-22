@@ -78,10 +78,10 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="i in pagedItemsInclude[currentPageInclude]" class="table table-sm"
-                    ng-click="usersInCheckboxList[i.username]=!usersInCheckboxList[i.username]"
-                    ng-init="addUsersFromPageToCheckboxObject(pagedItemsInclude[currentPageInclude])">
+                    ng-click="usersInCheckboxList[i.username]=!usersInCheckboxList[i.username]">
                     <td class="p-10" style="margin-left: 4px">
                         <input class="form-check-input position-left singlechkbox" type="checkbox"
+                               id="blankCheckbox"
                                style="margin-left: 0"
                                ng-model="usersInCheckboxList[i.username]"
                                ng-click="$event.stopPropagation()"

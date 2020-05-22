@@ -90,7 +90,7 @@
         $scope.modelDescription = "";
 
         // Object that contains users that have a checkbox checked
-        $scope.usersInCheckboxList = { };
+        $scope.usersInCheckboxList = {};
 
         //Variable for holding description
         let groupingDescription = "";
@@ -1051,9 +1051,8 @@
         /**
          * Toggle for the check-all checkbox that either adds all users or removes all user's usernames on the page.
          */
-        $scope.toggleCheckAllSelection = function(currentPage) {
+        $scope.toggleCheckAllSelection = function() {
             $scope.allSelected = !$scope.allSelected;
-
             for(let username in $scope.usersInCheckboxList) {
                 $scope.usersInCheckboxList[username] = $scope.allSelected;
             }
@@ -1459,6 +1458,8 @@
 
         $scope.resetFields = function () {
             $scope.userToAdd = "";
+            $scope.usersInCheckboxList = {};
+            $scope.isAllSelected = false;
         };
 
         /**
