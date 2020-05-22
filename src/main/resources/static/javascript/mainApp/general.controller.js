@@ -505,13 +505,13 @@
          */
         $scope.addMembers = function (listName) {
             $scope.listName = listName;
-            let numMembers = ($scope.usersToModify.split(" ").length - 1);
+            let numMembers = ($scope.usersToAdd.split(" ").length - 1);
 
 
             if (numMembers > 0) {
-                let users = $scope.usersToModify.split(/[ ,]+/).join(",");
+                let users = $scope.usersToAdd.split(/[ ,]+/).join(",");
 
-                $scope.usersToModify = [];
+                $scope.usersToAdd = [];
                 if (numMembers > $scope.maxImport) {
                     launchCreateGenericOkModal(
                         "Out of Bounds Import Warning",
@@ -529,7 +529,7 @@
                     $scope.addMultipleMembers(users, listName);
                 }
             } else {
-                $scope.userToAdd = $scope.usersToModify;
+                $scope.userToAdd = $scope.usersToAdd;
                 $scope.addMember(listName);
             }
         };
@@ -1051,8 +1051,9 @@
         /**
          * Toggle for the check-all checkbox that either adds all users or removes all user's usernames on the page.
          */
-        $scope.toggleCheckAllSelection = function() {
+        $scope.toggleCheckAllSelection = function(currentPage) {
             $scope.allSelected = !$scope.allSelected;
+
             for(let username in $scope.usersInCheckboxList) {
                 $scope.usersInCheckboxList[username] = $scope.allSelected;
             }
