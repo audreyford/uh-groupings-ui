@@ -1074,6 +1074,7 @@
         $scope.removeMembersWithDeleteButton = function(listName) {
             console.log($scope.usersInCheckboxList);
             $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
+            console.log($scope.allSelected);
             console.log($scope.usersToModify);
         };
 
@@ -1459,7 +1460,7 @@
         $scope.resetFields = function () {
             $scope.userToAdd = "";
             $scope.usersInCheckboxList = {};
-            $scope.isAllSelected = false;
+            $scope.allSelected = false;
         };
 
         /**
