@@ -505,9 +505,8 @@
          */
         $scope.addMembers = function (listName) {
             $scope.listName = listName;
+            $scope.usersToAdd = $scope.usersToModify;
             let numMembers = ($scope.usersToAdd.split(" ").length - 1);
-
-
             if (numMembers > 0) {
                 let users = $scope.usersToAdd.split(/[ ,]+/).join(",");
 
@@ -1072,10 +1071,17 @@
          * @param listName - Name of the list that the user(s) will be deleted from.
          */
         $scope.removeMembersWithDeleteButton = function(listName) {
-            console.log($scope.usersInCheckboxList);
+            $scope.listName = listName;
+            // Gather array of users that are checked w/ checkbox
             $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
-            console.log($scope.allSelected);
-            console.log($scope.usersToModify);
+            $scope.usersToDelete = $scope.usersToModify;
+            // Create comma separated string array of checked users
+            let users = $scope.usersToDelete.join();
+            // Append users that are typed in manually as well?
+
+            
+            // Print string of users for debugging purposes.
+            console.log(users);
         };
 
 
