@@ -27,6 +27,8 @@
         $scope.multiDeleteResults = [];
         $scope.multiDeleteResultsGeneric = [];
 
+        $scope.membersToAddOrRemove = "";
+
         $scope.usersToModify = [];
 
         $scope.itemsAlreadyInList = [];
@@ -1043,16 +1045,16 @@
          * and initializes them to false.
          * @param currentPage - the current page that contains the users.
          */
-        $scope.addUsersFromPageToCheckboxObject = function(currentPage) {
+        $scope.addUsersFromPageToCheckboxObject = function (currentPage) {
             currentPage.forEach((user) => $scope.usersInCheckboxList[user.username] = false);
         };
 
         /**
          * Toggle for the check-all checkbox that either adds all users or removes all user's usernames on the page.
          */
-        $scope.toggleCheckAllSelection = function() {
+        $scope.toggleCheckAllSelection = function () {
             $scope.allSelected = !$scope.allSelected;
-            for(let username in $scope.usersInCheckboxList) {
+            for (let username in $scope.usersInCheckboxList) {
                 $scope.usersInCheckboxList[username] = $scope.allSelected;
             }
         };
@@ -1070,18 +1072,23 @@
          * in the list usersToModify.
          * @param listName - Name of the list that the user(s) will be deleted from.
          */
-        $scope.removeMembersWithDeleteButton = function(listName) {
+        $scope.removeMembersWithDeleteButton = function (listName) {
             $scope.listName = listName;
-            // Gather array of users that are checked w/ checkbox
             $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
-            $scope.usersToDelete = $scope.usersToModify;
-            // Create comma separated string array of checked users
-            let users = $scope.usersToDelete.join();
-            // Append users that are typed in manually as well?
+            let usersToRemove = $scope.usersToModify.join();
+            let numMembersToRemove = ((usersToRemove.split(",").length - 1) + ($scope.membersToAddOrRemove.split(" ").length - 1));
+            if (numMembersToRemove > 0) {
+                usersToRemove = usersToRemove.concat(",", $scope.membersToAddOrRemove.split(/[ ,]+/).join(","));
+            } else {
+                let userToRemove;
+                (usersToRemove = " ") ? userToRemove = $scope.membersToAddOrRemove : userToRemove = usersToRemove;
+                console.log($scope.userToRemove);
+                
+            }
 
-            
+
             // Print string of users for debugging purposes.
-            console.log(users);
+            console.log(numMembersToRemove);
         };
 
 
@@ -1090,7 +1097,7 @@
          * @param {number} currentPage - the current page in the owners table
          * @param {number} index - the index of the owner clicked by the user
          */
-        $scope.removeOwner = function(currentPage, index) {
+        $scope.removeOwner = function (currentPage, index) {
             const ownerToRemove = $scope.pagedItemsOwners[currentPage][index];
 
             if ($scope.groupingOwners.length > 1) {
