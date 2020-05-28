@@ -508,7 +508,6 @@
         $scope.addMembers = function (listName) {
             $scope.listName = listName;
             $scope.usersToAdd = $scope.membersToAddOrRemove;
-            console.log($scope.usersToAdd);
             let numMembers = ($scope.usersToAdd.split(" ").length - 1);
             if (numMembers > 0) {
                 let users = $scope.usersToAdd.split(/[ ,]+/).join(",");
@@ -547,7 +546,7 @@
             let reader = new FileReader();
             reader.onload = function (e) {
                 let str = e.target.result;
-                $scope.usersToAdd = (str.split(/[\n]+/).join(" ")).slice(0, -1);
+                $scope.membersToAddOrRemove = (str.split(/[\n]+/).join(" ")).slice(0, -1);
                 $scope.addMembers($scope.listName);
             };
             reader.readAsText(file);
@@ -1082,10 +1081,13 @@
             if (numMembersToRemove > 1) {
                 if ($scope.usersToModify.length !== 0) {
                     usersToRemove = usersToRemove.concat(",");
+                    if ($scope.membersToAddOrRemove === "") {
+                        usersToRemove = usersToRemove.slice(0, -1);
+                    }
                 }
                 usersToRemove = usersToRemove.concat($scope.membersToAddOrRemove.split(/[ ,]+/).join(","));
             } else {
-                (usersToRemove === " ") ? ($scope.userToRemove = $scope.membersToAddOrRemove) : ($scope.userToRemove = usersToRemove);
+                (usersToRemove === "") ? ($scope.userToRemove = $scope.membersToAddOrRemove) : ($scope.userToRemove = usersToRemove);
                 $scope.createRemoveModal( {
                     user: $scope.returnMemberObjectFromUsername($scope.userToRemove, currentPage),
                     listName: listName,
@@ -1318,6 +1320,7 @@
                     $scope.multiDeleteResults = [];
                     $scope.multiDeleteResultsGeneric = [];
                     $scope.usersToModify = [];
+                    $scope.membersToAddOrRemove = "";
                     break;
                 case "owners":
                     $scope.ownerToAdd = "";

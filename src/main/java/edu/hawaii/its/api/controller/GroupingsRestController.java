@@ -322,7 +322,7 @@ public class GroupingsRestController {
      * @return information about the success of the operation
      */
     @PostMapping(value = "/groupings/{path}/includeMembers/{uid}")
-    public ResponseEntity removeMemberFromIncludeGroup(Principal principal,
+    public ResponseEntity deleteMemberFromIncludeGroup(Principal principal,
             @PathVariable String path,
             @PathVariable String uid) {
         logger.info("Entered REST removeMembersFromIncludeGroup...");
@@ -339,7 +339,7 @@ public class GroupingsRestController {
      * @return information about the success of the operation
      */
     @PostMapping(value = "/groupings/{path}/excludeMembers/{uid}")
-    public ResponseEntity removeMemberFromExcludeGroup(Principal principal,
+    public ResponseEntity deleteMemberFromExcludeGroup(Principal principal,
             @PathVariable String path,
             @PathVariable String uid) {
         logger.info("Entered REST removeMembersFromExcludeGroup...");
