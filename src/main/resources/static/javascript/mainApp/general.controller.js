@@ -1297,19 +1297,12 @@
         }
 
         /**
-         * Clears the user input for adding a member to a list.
-         * @param {string?} listName - the name of the list the member is being added to
+         * Clears the user input for adding/deleting a member to/from a list.
+         * @param {string?} listName - Name of the list that the user is being added to or removed from.
          */
-        function clearAddMemberInput(listName) {
+        function clearMemberInput(listName) {
             switch (listName) {
                 case "Include":
-                    $scope.userToAdd = "";
-                    $scope.usersToAdd = "";
-                    $scope.userNameList = [];
-                    $scope.multiAddResults = [];
-                    $scope.waitingForImportResponse = false;
-                    $scope.personProps = [];
-                    break;
                 case "Exclude":
                     $scope.userToAdd = "";
                     $scope.usersToAdd = "";
