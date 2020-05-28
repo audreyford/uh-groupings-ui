@@ -1076,19 +1076,16 @@
             $scope.listName = listName;
             $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
             let usersToRemove = $scope.usersToModify.join();
-            let numMembersToRemove = ((usersToRemove.split(",").length - 1) + ($scope.membersToAddOrRemove.split(" ").length - 1));
-            if (numMembersToRemove > 0) {
-                usersToRemove = usersToRemove.concat(",", $scope.membersToAddOrRemove.split(/[ ,]+/).join(","));
+            let numMembersToRemove = (($scope.usersToModify.length) + ($scope.membersToAddOrRemove.split(/[[a-z0-9]+/).length - 1));
+            if (numMembersToRemove > 1) {
+                if ($scope.usersToModify.length !== 0) {
+                    usersToRemove = usersToRemove.concat(",");
+                }
+                usersToRemove = usersToRemove.concat($scope.membersToAddOrRemove.split(/[ ,]+/).join(","));
             } else {
-                let userToRemove;
-                (usersToRemove = " ") ? userToRemove = $scope.membersToAddOrRemove : userToRemove = usersToRemove;
+                (usersToRemove = " ") ? ($scope.userToRemove = $scope.membersToAddOrRemove) : ($scope.userToRemove = usersToRemove);
                 console.log($scope.userToRemove);
-                
             }
-
-
-            // Print string of users for debugging purposes.
-            console.log(numMembersToRemove);
         };
 
 
