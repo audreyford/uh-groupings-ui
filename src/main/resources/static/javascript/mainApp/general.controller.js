@@ -507,7 +507,8 @@
          */
         $scope.addMembers = function (listName) {
             $scope.listName = listName;
-            $scope.usersToAdd = $scope.usersToModify.join(", ");
+            $scope.usersToAdd = $scope.membersToAddOrRemove;
+            console.log($scope.usersToAdd);
             let numMembers = ($scope.usersToAdd.split(" ").length - 1);
             if (numMembers > 0) {
                 let users = $scope.usersToAdd.split(/[ ,]+/).join(",");
@@ -601,7 +602,7 @@
             });
             $scope.loading = false;
             $scope.multiAddResultModalInstance.result.finally(function () {
-                clearAddMemberInput(listName);
+                clearMemberInput(listName);
                 $scope.loading = true;
                 if ($scope.listName === "admins") {
                     // Refreshes the groupings list and the admins list
@@ -659,14 +660,14 @@
          * Clear all data from the add member(s) instance. Close the modal.
          */
         $scope.closeMultiAddResultInstance = function () {
-            clearAddMemberInput($scope.listName);
+            clearMemberInput($scope.listName);
             $scope.multiAddResultModalInstance.dismiss();
         };
         /**
          * Cancel the import Modal instance
          */
         $scope.cancelImportModalInstance = function () {
-            clearAddMemberInput($scope.listName);
+            clearMemberInput($scope.listName);
             $scope.confirmImportInstance.dismiss();
         };
 
@@ -968,7 +969,7 @@
             });
 
             $scope.addModalInstance.result.finally(function () {
-                clearAddMemberInput(options.listName);
+                clearMemberInput(options.listName);
                 $scope.loading = true;
                 if ($scope.listName === "admins") {
                     // Refreshes the groupings list and the admins list
@@ -1091,6 +1092,7 @@
                     scope: $scope
                 });
             }
+            clearMemberInput(listName);
         };
 
         /**
@@ -1310,6 +1312,12 @@
                     $scope.multiAddResults = [];
                     $scope.waitingForImportResponse = false;
                     $scope.personProps = [];
+                    $scope.userToDelete = "";
+                    $scope.usersToDelete = [];
+                    $scope.multiDeleteThreshold = 100;
+                    $scope.multiDeleteResults = [];
+                    $scope.multiDeleteResultsGeneric = [];
+                    $scope.usersToModify = [];
                     break;
                 case "owners":
                     $scope.ownerToAdd = "";
@@ -1345,7 +1353,7 @@
             resetGroupingMembers();
             resetPillsToAllMembers();
             resetFilterQueries();
-            clearAddMemberInput();
+            clearMemberInput();
             $scope.columnSort = {};
             $scope.syncDestArray = [];
 
