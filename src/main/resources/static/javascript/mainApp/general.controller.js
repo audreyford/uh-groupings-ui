@@ -507,7 +507,7 @@
          */
         $scope.addMembers = function (listName) {
             $scope.listName = listName;
-            $scope.usersToAdd = $scope.usersToModify;
+            $scope.usersToAdd = $scope.usersToModify.join(", ");
             let numMembers = ($scope.usersToAdd.split(" ").length - 1);
             if (numMembers > 0) {
                 let users = $scope.usersToAdd.split(/[ ,]+/).join(",");
@@ -1071,8 +1071,9 @@
          * Removes members upon clicking the delete button. Can remove a single member or multiple members
          * in the list usersToModify.
          * @param listName - Name of the list that the user(s) will be deleted from.
+         * @param currentPage - The page that you are currently on.
          */
-        $scope.removeMembersWithDeleteButton = function (listName) {
+        $scope.removeMembersWithDeleteButton = function (listName, currentPage) {
             $scope.listName = listName;
             $scope.extractSelectedUsersFromCheckboxes($scope.usersInCheckboxList);
             let usersToRemove = $scope.usersToModify.join();
@@ -1083,9 +1084,22 @@
                 }
                 usersToRemove = usersToRemove.concat($scope.membersToAddOrRemove.split(/[ ,]+/).join(","));
             } else {
-                (usersToRemove = " ") ? ($scope.userToRemove = $scope.membersToAddOrRemove) : ($scope.userToRemove = usersToRemove);
-                console.log($scope.userToRemove);
+                (usersToRemove === " ") ? ($scope.userToRemove = $scope.membersToAddOrRemove) : ($scope.userToRemove = usersToRemove);
+                $scope.createRemoveModal( {
+                    user: $scope.returnMemberObjectFromUsername($scope.userToRemove, currentPage),
+                    listName: listName,
+                    scope: $scope
+                });
             }
+        };
+
+        /**
+         * Returns the member object that has the provided username.
+         * @param username - The username of the member object to return.
+         * @param currentPage - The page that the member is on.
+         */
+        $scope.returnMemberObjectFromUsername = function (username, currentPage) {
+            return _.find(currentPage, (user) => user.username === username);
         };
 
 
