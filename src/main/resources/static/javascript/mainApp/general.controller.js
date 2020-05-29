@@ -623,7 +623,7 @@
             });
             $scope.loading = false;
             $scope.multiDeleteResultModalInstance.result.finally(function () {
-                clearDeleteMemberInput(listName);
+                clearMemberInput(listName);
                 $scope.loading = true;
                 if ($scope.listName === "admins") {
                     // Refreshes the groupings list and the admins list
@@ -1086,6 +1086,7 @@
                     }
                 }
                 usersToRemove = usersToRemove.concat($scope.membersToAddOrRemove.split(/[ ,]+/).join(","));
+                $scope.removeMultipleMembers(usersToRemove, listName);
             } else {
                 (usersToRemove === "") ? ($scope.userToRemove = $scope.membersToAddOrRemove) : ($scope.userToRemove = usersToRemove);
                 $scope.createRemoveModal( {
@@ -1131,6 +1132,18 @@
         function handleMemberRemove(res) {
             $scope.getGroupingInformation();
             $scope.syncDestArray = [];
+        }
+
+        $scope.handleSuccessfulMultiMemberRemoval = function (res) {
+            for (let i = 0; i < res.length; i++) {
+                $scope.multiDeleteResults[i] = res[i].person;
+                $scope.multiDeleteResultsGeneric[i] = res[i].person;
+            }
+            if (undefined !== res[0].person) {
+                $scope.personProps = Object.keys(res[0].person);
+                $scope.personProps.shift();
+            }
+            $scope.launchMultiDeleteResultModal($scope.listName);
         }
 
         /**
@@ -1242,9 +1255,9 @@
          * @param membersToRemove - Comma separated string of members to remove from the list.
          * @param listName - Name of list to remove the members from.
          */
-        $scope.removeMultipleUsers = (membersToRemove, listName) => {
-
-            
+        $scope.removeMultipleMembers = (membersToRemove, listName) => {
+            let groupingPath = $scope.selectedGrouping.path;
+            groupingsService.removeMembersFromInclude(groupingPath, membersToRemove, $scope.handleSuccessfulMultiMemberRemoval, handleUnsuccessfulRequest);
         };
 
         /**
