@@ -1106,7 +1106,6 @@
             return _.find(currentPage, (user) => user.username === username);
         };
 
-
         /**
          * Removes a grouping owner. There must be at least one grouping owner remaining.
          * @param {number} currentPage - the current page in the owners table
@@ -1238,14 +1237,14 @@
             $scope.removeErrorModalInstance.close();
         };
 
-        $scope.removeMultipleUsers = (list) => {
+        /**
+         * Removes multiple members of a list from a comma separated string of member usernames.
+         * @param membersToRemove - Comma separated string of members to remove from the list.
+         * @param listName - Name of list to remove the members from.
+         */
+        $scope.removeMultipleUsers = (membersToRemove, listName) => {
 
-            groupingsService.removeMembersFromInclude($scope.selectedGrouping.path, list,
-                (res) => {
-                    console.log(res);
-                }, (res) => {
-                    console.log(res);
-                });
+            
         };
 
         /**
